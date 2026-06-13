@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>香港特種兵 2025 · 6/18–6/22</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #C0392B;
+    --red-light: #FDECEA;
+    --red-mid: #E8574A;
+    --gray-900: #1A1A1A;
+    --gray-700: #444;
+    --gray-500: #888;
+    --gray-200: #E8E8E8;
+    --gray-100: #F5F5F5;
+    --white: #FFFFFF;
+    --food: #D4AC0D;
+    --food-bg: #FEFCE8;
+    --sight: #2563EB;
+    --sight-bg: #EFF6FF;
+    --transport: #059669;
+    --transport-bg: #ECFDF5;
+    --hotel: #7C3AED;
+    --hotel-bg: #F5F3FF;
+    --errand: #9CA3AF;
+    --errand-bg: #F9FAFB;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--gray-100);
+    color: var(--gray-900);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--red);
+    color: var(--white);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '香港';
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11rem;
+    font-weight: 700;
+    opacity: 0.06;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 14px;
+    opacity: 0.8;
+    flex-wrap: wrap;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* NAV TABS */
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-tabs {
+    display: flex;
+    width: max-content;
+    min-width: 100%;
+    justify-content: center;
+  }
+  .nav-tab {
+    padding: 0.85rem 1.25rem;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-500);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-tab:hover { color: var(--gray-900); }
+  .nav-tab.active { color: var(--red); border-bottom-color: var(--red); }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 1rem 1.5rem;
+    max-width: 780px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--gray-700);
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* CONTENT */
+  .container { max-width: 780px; margin: 0 auto; padding: 0 1rem 4rem; }
+
+  .day-section { margin-bottom: 2.5rem; padding-top: 1rem; }
+
+  .day-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+  .day-label {
+    background: var(--red);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+  }
+  .day-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+  .day-sub {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: start;
+    gap: 0 14px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-100);
+    transition: background .1s;
+  }
+  .row:last-child { border-bottom: none; }
+  .row:hover { background: #FAFAFA; }
+
+  .time {
+    font-size: 12px;
+    color: var(--gray-500);
+    padding-top: 2px;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+  }
+
+  .info { min-width: 0; }
+  .place-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-900);
+    line-height: 1.4;
+    margin-bottom: 3px;
+  }
+  .place-note {
+    font-size: 12px;
+    color: var(--gray-500);
+    line-height: 1.5;
+  }
+  .warning { color: #D97706; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+  }
+  .tag-food    { background: var(--food-bg);      color: #92400E; }
+  .tag-sight   { background: var(--sight-bg);     color: #1E3A8A; }
+  .tag-transport { background: var(--transport-bg); color: #065F46; }
+  .tag-hotel   { background: var(--hotel-bg);     color: #4C1D95; }
+  .tag-errand  { background: var(--errand-bg);    color: #374151; }
+
+  .map-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--gray-100);
+    color: var(--gray-500);
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background .15s, color .15s;
+    font-size: 15px;
+    margin-top: 1px;
+  }
+  .map-btn:hover { background: var(--red-light); color: var(--red); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 12px;
+    color: var(--gray-500);
+    font-family: 'DM Sans', sans-serif;
+    border-top: 1px solid var(--gray-200);
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 500px) {
+    .hero h1 { font-size: 2rem; }
+    .row { grid-template-columns: 52px 1fr auto; gap: 0 10px; }
+    .nav-tabs { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="hero-eyebrow">特種兵行程攻略</p>
+  <h1>香港五日遊</h1>
+  <div class="hero-meta">
+    <span>📅 2025 年 6 月 18–22 日</span>
+    <span>✈️ 桃園 → 香港</span>
+    <span>🏨 荃灣旭逸雅捷</span>
+  </div>
+</div>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <a class="nav-tab" href="#d1">6/18 抵港</a>
+    <a class="nav-tab" href="#d2">6/19 中環・山頂</a>
+    <a class="nav-tab" href="#d3">6/20 旺角・尖沙咀</a>
+    <a class="nav-tab" href="#d4">6/21 太子・廟街</a>
+    <a class="nav-tab" href="#d5">6/22 昂坪・離港</a>
+  </div>
+</nav>
+
+<div class="legend">
+  <div class="legend-item"><span class="dot" style="background:#D97706"></span>美食</div>
+  <div class="legend-item"><span class="dot" style="background:#2563EB"></span>景點</div>
+  <div class="legend-item"><span class="dot" style="background:#059669"></span>交通</div>
+  <div class="legend-item"><span class="dot" style="background:#7C3AED"></span>住宿</div>
+  <div class="legend-item"><span class="dot" style="background:#9CA3AF"></span>辦事</div>
+</div>
+
+<div class="container">
+
+  <!-- DAY 1 -->
+  <section class="day-section" id="d1">
+    <div class="day-header">
+      <span class="day-label">DAY 1</span>
+      <span class="day-name">抵達香港</span>
+      <span class="day-sub">6 月 18 日（三）</span>
+    </div>
+    <div class="card">
+      <div class="row">
+        <span class="time">19:00</span>
+        <div class="info">
+          <div class="place-name">桃園機場起飛 BR809</div>
+          <div class="place-note">提前 2 小時報到</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <span></span>
+      </div>
+      <div class="row">
+        <span class="time">20:45</span>
+        <div class="info">
+          <div class="place-name">抵達香港國際機場</div>
+          <div class="place-note">快速通關</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Hong+Kong+International+Airport" target="_blank" title="Google Maps">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">21:00</span>
+        <div class="info">
+          <div class="place-name">購買八達通 / eSIM</div>
+          <div class="place-note">機場出閘後即可辦理</div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Hong+Kong+International+Airport" target="_blank" title="Google Maps">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">21:20</span>
+        <div class="info">
+          <div class="place-name">搭 A30 巴士前往荃灣</div>
+          <div class="place-note">約 50 分鐘</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Tsuen+Wan" target="_blank" title="Google Maps">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">22:15</span>
+        <div class="info">
+          <div class="place-name">旭逸雅捷酒店 Check-in</div>
+          <div class="tags"><span class="tag tag-hotel">住宿</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Hotel+Ease+Access+Tsuen+Wan" target="_blank" title="Google Maps">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">22:30</span>
+        <div class="info">
+          <div class="place-name">車仔麵宵夜</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Tsuen+Wan+noodle" target="_blank" title="Google Maps">📍</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY 2 -->
+  <section class="day-section" id="d2">
+    <div class="day-header">
+      <span class="day-label">DAY 2</span>
+      <span class="day-name">中環 · 山頂</span>
+      <span class="day-sub">6 月 19 日（四）</span>
+    </div>
+    <div class="card">
+      <div class="row">
+        <span class="time">09:30</span>
+        <div class="info">
+          <div class="place-name">荃灣站出發</div>
+          <div class="tags"><span class="tag tag-transport">港鐵</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Tsuen+Wan+Station" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">10:00</span>
+        <div class="info">
+          <div class="place-name">祥興記上海生煎包</div>
+          <div class="place-note">黑松露生煎包，先嚐鮮即可</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Cheung+Hing+Kee+Central+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">11:30</span>
+        <div class="info">
+          <div class="place-name">半山扶手電梯</div>
+          <div class="place-note">拍照打卡</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Central+Mid+Levels+Escalator" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">12:00</span>
+        <div class="info">
+          <div class="place-name">嘉咸街壁畫</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Graham+Street+Mural+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">12:30</span>
+        <div class="info">
+          <div class="place-name">天龍燒鵝</div>
+          <div class="place-note">燒鵝飯午餐</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Tin+Lung+Roast+Goose+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">13:30</span>
+        <div class="info">
+          <div class="place-name">石板街</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Pottinger+Street+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">14:00</span>
+        <div class="info">
+          <div class="place-name">大館</div>
+          <div class="place-note">停留約 1.5 小時</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Tai+Kwun+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">15:30</span>
+        <div class="info">
+          <div class="place-name">前往山頂纜車站</div>
+          <div class="place-note">避開人潮，建議提前購票</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Peak+Tram+Lower+Terminus" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">16:00</span>
+        <div class="info">
+          <div class="place-name">搭山頂纜車</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Victoria+Peak+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">16:30</span>
+        <div class="info">
+          <div class="place-name">凌霄閣 / 山頂步道</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=The+Peak+Tower+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">18:30</span>
+        <div class="info">
+          <div class="place-name">太平山夜景</div>
+          <div class="place-note">黃金時段，日落後最美</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Victoria+Peak+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">20:15</span>
+        <div class="info">
+          <div class="place-name">盛記大排檔 · 蘭桂坊散步</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Lan+Kwai+Fong+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">21:30</span>
+        <div class="info">
+          <div class="place-name">返回飯店</div>
+          <div class="tags"><span class="tag tag-hotel">住宿</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Hotel+Ease+Access+Tsuen+Wan" target="_blank">📍</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section class="day-section" id="d3">
+    <div class="day-header">
+      <span class="day-label">DAY 3</span>
+      <span class="day-name">旺角 · 尖沙咀 · 中環</span>
+      <span class="day-sub">6 月 20 日（五）</span>
+    </div>
+    <div class="card">
+      <div class="row">
+        <span class="time">08:00</span>
+        <div class="info">
+          <div class="place-name">澳洲牛奶公司</div>
+          <div class="place-note">早點去排隊，超人氣炒蛋吐司</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Australia+Dairy+Company+Jordan+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">09:30</span>
+        <div class="info">
+          <div class="place-name">旺角散步</div>
+          <div class="place-note">女人街、波鞋街、花墟</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Mong+Kok+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">11:00</span>
+        <div class="info">
+          <div class="place-name">前往尖沙咀</div>
+          <div class="tags"><span class="tag tag-transport">港鐵</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Tsim+Sha+Tsui+Station" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">12:00</span>
+        <div class="info">
+          <div class="place-name">談仔雲南米線</div>
+          <div class="place-note">午餐</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Yunnan+Rice+Noodles+Tsim+Sha+Tsui" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">13:30</span>
+        <div class="info">
+          <div class="place-name">星光大道 → 鐘樓 → 海濱長廊</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Avenue+of+Stars+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">15:30</span>
+        <div class="info">
+          <div class="place-name">搭天星小輪 尖沙咀 → 中環</div>
+          <div class="place-note">體驗維港，掃街美食</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Star+Ferry+Pier+Tsim+Sha+Tsui" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">16:00</span>
+        <div class="info">
+          <div class="place-name">中環碼頭 · IFC</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=IFC+Mall+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">18:30</span>
+        <div class="info">
+          <div class="place-name">葵涌廣場</div>
+          <div class="place-note">順路回荃灣，掃貨</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Kwai+Chung+Plaza" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">20:30</span>
+        <div class="info">
+          <div class="place-name">返回飯店</div>
+          <div class="tags"><span class="tag tag-hotel">住宿</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Hotel+Ease+Access+Tsuen+Wan" target="_blank">📍</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY 4 -->
+  <section class="day-section" id="d4">
+    <div class="day-header">
+      <span class="day-label">DAY 4</span>
+      <span class="day-name">太子 · 深水埗 · 廟街</span>
+      <span class="day-sub">6 月 21 日（六）</span>
+    </div>
+    <div class="card">
+      <div class="row">
+        <span class="time">09:30</span>
+        <div class="info">
+          <div class="place-name">前往太子站</div>
+          <div class="tags"><span class="tag tag-transport">港鐵</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Prince+Edward+Station" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">10:30</span>
+        <div class="info">
+          <div class="place-name">一點心</div>
+          <div class="place-note">米其林平價點心</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=One+Dim+Sum+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">11:30</span>
+        <div class="info">
+          <div class="place-name">深水埗逛逛吃美食</div>
+          <div class="place-note">鴨寮街電子零件、特色小食</div>
+          <div class="tags"><span class="tag tag-food">美食</span><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Sham+Shui+Po+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">13:00</span>
+        <div class="info">
+          <div class="place-name">黃大仙祠</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Wong+Tai+Sin+Temple" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">15:30</span>
+        <div class="info">
+          <div class="place-name">沙田馬場</div>
+          <div class="place-note"><span class="warning">⚠️ 請先確認 6/21（六）當天有賽事 → </span><a href="https://racing.hkjc.com" target="_blank" style="color:#C0392B;font-size:12px">HKJC 官網查詢</a></div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Sha+Tin+Racecourse" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">18:30</span>
+        <div class="info">
+          <div class="place-name">廟街夜市</div>
+          <div class="place-note">晚餐 · 逛市集</div>
+          <div class="tags"><span class="tag tag-food">美食</span><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Temple+Street+Night+Market" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">19:00</span>
+        <div class="info">
+          <div class="place-name">興記煲仔飯</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Hing+Kee+Restaurant+Temple+Street" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">21:00</span>
+        <div class="info">
+          <div class="place-name">佳佳甜品</div>
+          <div class="place-note">芝麻糊</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Kai+Kai+Dessert+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">22:00</span>
+        <div class="info">
+          <div class="place-name">返回飯店</div>
+          <div class="tags"><span class="tag tag-hotel">住宿</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Hotel+Ease+Access+Tsuen+Wan" target="_blank">📍</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY 5 -->
+  <section class="day-section" id="d5">
+    <div class="day-header">
+      <span class="day-label">DAY 5</span>
+      <span class="day-name">東涌 · 昂坪 · 大澳 · 離港</span>
+      <span class="day-sub">6 月 22 日（日）</span>
+    </div>
+    <div class="card">
+      <div class="row">
+        <span class="time">09:00</span>
+        <div class="info">
+          <div class="place-name">上海商業銀行除戶</div>
+          <div class="tags"><span class="tag tag-errand">辦事</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Shanghai+Commercial+Bank+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">11:00</span>
+        <div class="info">
+          <div class="place-name">逸東軒</div>
+          <div class="place-note">蜜汁叉燒</div>
+          <div class="tags"><span class="tag tag-food">美食</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Yat+Tung+Heen+Hong+Kong" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">12:00</span>
+        <div class="info">
+          <div class="place-name">出發前往東涌 · CityGate 放行李</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Tung+Chung+Station" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">13:30</span>
+        <div class="info">
+          <div class="place-name">昂坪 360 纜車</div>
+          <div class="place-note">建議提前預約</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Ngong+Ping+360" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">14:15</span>
+        <div class="info">
+          <div class="place-name">天壇大佛 · 寶蓮禪寺 · 昂坪市集</div>
+          <div class="place-note">搭 15:20 的 21 號巴士前往大澳</div>
+          <div class="tags"><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Tian+Tan+Buddha" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">16:00</span>
+        <div class="info">
+          <div class="place-name">大澳漁村</div>
+          <div class="place-note">雞蛋仔・魚蛋・蝦豬餅，美食巡禮一路吃</div>
+          <div class="tags"><span class="tag tag-food">美食</span><span class="tag tag-sight">景點</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Tai+O+Fishing+Village" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">17:50</span>
+        <div class="info">
+          <div class="place-name">返回東涌 · CityGate 取行李</div>
+          <div class="place-note">搭 11 號巴士・記得買 Bakehouse</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Citygate+Outlets" target="_blank">📍</a>
+      </div>
+      <div class="row">
+        <span class="time">19:30</span>
+        <div class="info">
+          <div class="place-name">前往機場（不拖運）</div>
+          <div class="tags"><span class="tag tag-transport">交通</span></div>
+        </div>
+        <a class="map-btn" href="https://maps.google.com/?q=Hong+Kong+International+Airport" target="_blank">📍</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  香港特種兵 2025 · 玩遍每一條街 · 吃遍每一攤
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.nav-tab');
+  const sections = document.querySelectorAll('.day-section');
+
+  function setActive() {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    tabs.forEach(t => {
+      t.classList.toggle('active', t.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
+</body>
+</html>
